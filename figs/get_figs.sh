@@ -4,4 +4,4 @@ DIR='um10.7_runs/postproc'
 SUITE='u-al000'
 URL="$HOST:$DIR/$SUITE/share/data/history"
 
-rsync $URL/suite_results/figs/profile_plot.uv_profile.png .
+rsync $URL/suite_results/figs/atmos.profile_plot.uv_profile.png .
