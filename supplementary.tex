@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[pdftex]{color,graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{siunitx}
+\usepackage{geometry}
+\newgeometry{margin=2.0cm}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\usepackage[backend=biber,style=authoryear,sorting=nyt,dashed=false]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+\addbibresource{references/references.bib} % note the .bib is required
+
+\newcommand*\mean[1]{\overline{#1}}
+\newcommand\todo[1]{\textbf{TODO: #1}}
+
+\title{SUPPLEMENTARY: Effects of Vertical Shear on Cloud Field Variability and Organization }
+\author{Mark Muetzelfeldt}
+\date{June 2017}
+
+\begin{document}
+
+\maketitle
+
+\section{Suite}
+
+The main suite used was \href{https://code.metoffice.gov.uk/trac/roses-u/browser/a/l/0/0/0/trunk}{u-al000}. Revisions 42978:42985 were used for the bulk of the modelling, between 9/6/2017 - 11/6/2017.
+
+\section{Omnium and analysis}
+
+Analysis was done using \href{https://github.com/markmuetz/omnium}{omnium} and \href{https://github.com/markmuetz/scaffold_analysis}{scaffold\_analysis}. 
+
+\section{Extra figs}
+
+\begin{figure}[htp!]
+    \centering
+    \includegraphics[width=400px]{figs/{atmos.profile_plot.dz_profile}.png}
+    \caption{}
+    \label{fig:uv_profile}
+\end{figure}
+
+\section{Reference location}
+
+\begin{enumerate}
+    \item \cite{wing2017convective}: Section 3.2, p14.
+\end{enumerate}
+
+
+\printbibliography[title={References}]
+
+
+\end{document}
