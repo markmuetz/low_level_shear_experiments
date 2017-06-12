@@ -15,5 +15,6 @@ rsync -v $DATAM/suite_results/figs/atmos.mass_flux_spatial_scales_plot.both_z1.p
 rsync -v $DATAM/suite_results/figs/atmos.profile_plot.thermodynamic_profile.png .
 rsync -v $DATAM/suite_results/figs/atmos.profile_plot.mf_profile.png .
 rsync -v $DATAM/suite_results/figs/atmos.precip_plot.time_index1865.png .
+rsync -v $DATAM/suite_results/figs/atmos.precip_plot.time_index1870.png .
 
 rsync -Rav "$DATAW/./S?_atmos/figs" .
