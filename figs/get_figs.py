@@ -1,6 +1,8 @@
 import os
 import subprocess as sp
 
+from crop_figs import crop_all
+
 REL_FETCH_CMD_FMT = ("rsync -Rzav {host}:{rel_filenames} .")
 
 HOST='mmuetz@login.rdf.ac.uk'
@@ -33,3 +35,5 @@ if __name__ == '__main__':
                                    host=HOST)
     # print(cmd)
     sp.call(cmd, shell=True)
+
+    crop_all()

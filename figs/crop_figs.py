@@ -21,11 +21,11 @@ def crop(filename, rect):
     print('Crop size: {}'.format(cropped_im.getbbox()))
     cropped_im.save(out_filename)
 
-def main():
+def crop_all():
     for filename_glob, rect in FILES_TO_CROP:
         for filename in sorted(glob(filename_glob)):
             crop(filename, rect)
 
 
 if __name__ == '__main__':
-    main()
+    crop_all()
