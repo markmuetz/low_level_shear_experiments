@@ -135,7 +135,19 @@ The reference profiles, along with the mean wind from the model over the final d
 %\end{itemize}
 %
 
-Figure \ref{fig:S0_S4_snapshot} shows \SI{15}{min} means of rainfall from two of the experiments, S0 and S4. 
+% Figure \ref{fig:S0_S4_snapshot} shows \SI{15}{min} means of rainfall from two of the experiments, S0 and S4. 
+\begin{itemize}
+    \item \textbf{Figure \ref{fig:S0_S4_snapshot}:}
+    \item random (left) vs organized (right)
+    \item stoch process
+    \item linear organization - identified as a squall line
+    \begin{itemize}
+        \item size of cell
+        \item strength of cell
+        \item number of cells.
+    \end{itemize}
+    \item spatial distribution of clouds (there are areas of S4 with no clouds in them)
+\end{itemize}
 
 \begin{figure}[htp!]
     \centering
@@ -149,12 +161,56 @@ Figure \ref{fig:S0_S4_snapshot} shows \SI{15}{min} means of rainfall from two of
 %    \item Figure 5: Difference in equilibrium states from the different experiments. 
 %\end{itemize}
 %
+
+\begin{itemize}
+    \item \textbf{Figure \ref{fig:thermodyn_profile}:}
+    \item \textbf{left:}
+    \begin{itemize}
+        \item surf theta up with S up. expl: higher u near surf for S up.
+        \item theta approx. const in BL
+        \item tropopause height up with S up
+        \item max cloud top height up with S up
+        \item theta in clouds gt theta domain mean. expl: latent heat release in the cloud that is precip'd out.
+        \item 4 $\frac{d \theta}{dz}$s: 1 km/LCL, 7-9 km, 12-14 km, - breaks
+    \end{itemize}
+    \item \textbf{right:}
+    \begin{itemize}
+        \item all show qcl maxima at around 2.5 km
+        \item [S2]S3-5 show secondary maxima at 5-7 km. expl: trailing stratiform regions
+        \item lower max mag. lower for S up. \todo{expl}, indicates a large number of clouds dying off at higher heights
+    \end{itemize}
+\end{itemize}
+
 \begin{figure}[htp!]
     \centering
     \includegraphics[width=400px]{figs/{atmos.profile_plot.thermodynamic_profile}.png}
     \caption{}
     \label{fig:thermodyn_profile}
 \end{figure}
+
+\begin{itemize}
+    \item \textbf{Figure \ref{fig:mf_profile}:}
+    \item \textbf{left:}
+    \begin{itemize}
+        \item mf/cld up with S up
+        \item S2-5 all behave similarly
+        \item S0/1: mf/cld approx const, link to \cite{PC2008}
+        \item S2-5: mf/cld proportional to z, max at 10 km
+    \end{itemize}
+    \item \textbf{middle:}
+    \begin{itemize}
+        \item S0/1: number clds up with z up
+        \item S2-5: number of clouds approx const with height
+        \item max number clouds down with S up
+        \item S2-5: no secondary max at 5-7 km (cf. Fig \ref{fig:thermodyn_profile}). expl: presence of non-conv (stratiform) cld
+    \end{itemize}
+    \item \textbf{right:}
+    \begin{itemize}
+        \item S0: largest, max at 4 km
+        \item S2-5: similar, max at 6-8 km
+        \item \todo{say more!}
+    \end{itemize}
+\end{itemize}
 
 \begin{figure}[htp!]
     \centering
@@ -172,6 +228,22 @@ Figure \ref{fig:S0_S4_snapshot} shows \SI{15}{min} means of rainfall from two of
 %    \item N.B. perhaps combined into one figure.
 %\end{itemize}
 
+\begin{itemize}
+    \item \textbf{Figure \ref{fig:mf_hists}:}
+    \item \textbf{upper:}
+    \begin{itemize}
+        \item this shows hist of $m$: $p(m) \times N_{cld}$
+        \item exponential decrease for S0, cf. \ref{eqn:pdf_mass_flux_per_cloud}
+        \item approx. exponential decrease for S1-5, but: fast drop at start? 2 slopes with break at \SI{1.25e8}{kg.s^{-1}}
+        \item S2-5: all similar
+    \end{itemize}
+    \item \textbf{lower:}
+    \begin{itemize}
+        \item this shows how much a given mf contributes to the total mf: $m \times p(m) \times N_{cld}$
+        \item as S up, max. contrib. comes from larger mf clds
+        \item S2-5 similar (again)
+    \end{itemize}
+\end{itemize}
 
 \begin{figure}[htp!]
     \centering
@@ -179,6 +251,22 @@ Figure \ref{fig:S0_S4_snapshot} shows \SI{15}{min} means of rainfall from two of
     \caption{}
     \label{fig:mf_hists}
 \end{figure}
+
+\begin{itemize}
+    \item \textbf{Figure \ref{fig:mf_spatial_hists}:}
+    \item \textbf{upper: S0: n=1, 2, 4}
+    \begin{itemize}
+        \item shows increase in variance with S incr
+        \item \todo{How to explain n=4 kink at low mf?}
+    \end{itemize}
+    \item \textbf{lower: n=1: S0-5}
+    \begin{itemize}
+        \item decrease in mean mf with s incr.
+        \item S2-5 similar
+        \item note, there are far fewer clds in the domain for higher S, but width of S0 vs e.g. S4 is similar
+        \item this means that variance of S2-5 is (relatively) higher (I think)
+    \end{itemize}
+\end{itemize}
 
 \begin{figure}[htp!]
     \centering
