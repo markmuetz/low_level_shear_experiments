@@ -5,7 +5,7 @@ from glob import glob
 from PIL import Image
 
 FILES_TO_CROP = [
-    ('atmos.precip_plot.time_index*png', (10, 150, 800, 500)),
+    ('atmos.precip_plot.time_index*png', (10, 140, 800, 490)),
 ]
 
 
