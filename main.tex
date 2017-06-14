@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{siunitx}
 \usepackage{geometry}
-\newgeometry{margin=2.0cm}
+\newgeometry{margin=2.5cm}
 
 \usepackage[backend=biber,style=authoryear,sorting=nyt,dashed=false]{biblatex}
 \renewcommand*{\nameyeardelim}{\addcomma\space}
@@ -110,7 +110,7 @@ For the purposes of this study, in which we wish to study the dynamical interact
 Each simulation is started with an initial moisture and potential profile taken from the final state of a previous reference run. \todo{what can I say about this other than it comes from an LEM simulation?}. Simulations are allowed to spin-up for \SI{5}{days} while the surface fluxes come into balance with the energy and precipitation losses from the model. Output from the model is only analysed after the initial spin-up period.
 
 A prescribed cooling rate of \SI{2}{K.day^{-1}} is applied from the surface to \SI{200}{hPa}, decreasing linearly to \SI{0}{K.day^{-1}} by \SI{100}{hPa}. This cooling rate is comparable to typical radiative cooling rates over the tropics. Larger cooling rates representing large-scale convergence and forced ascent, ranging from \SI{4}{K.day^{-1}} to \SI{16}{K.day^{-1}}, were also tested. However, when the model was forced with these rates, it developed a large-scale, domain wide oscillation, thought to be a convectively coupled gravity wave with period equal to the largest scale available to the disturbance - the length of the domain. These oscillations are a form of organization, and so affect the fluctuations that we are trying to measure. They are also an artefact of the modelling process due to the bi-periodic nature of the boundary conditions, and so are little more than a curiosity and an annoyance. We therefore decided to run with smaller cooling rates that did not stimulate this mode of organization.
-\todo{add cooling profile to \ref{fig:uv_profile}}
+\todo{add cooling profile to Figure \ref{fig:uv_profile}}
 
 \subsection{Shear profiles and experiments}
 
@@ -294,21 +294,25 @@ Figure \ref{fig:mf_hists} also shows a measure of how much clouds with a given m
     \label{fig:mf_hists}
 \end{figure}
 
-\begin{itemize}
-    \item \textbf{Figure \ref{fig:mf_spatial_hists}:}
-    \item \textbf{upper: S0: n=1, 2, 4}
-    \begin{itemize}
-        \item shows increase in variance with S incr
-        \item \todo{How to explain n=4 kink at low mf?}
-    \end{itemize}
-    \item \textbf{lower: n=1: S0-5}
-    \begin{itemize}
-        \item decrease in mean mf with s incr.
-        \item S2-5 similar
-        \item note, there are far fewer clds in the domain for higher S, but width of S0 vs e.g. S4 is similar
-        \item this means that variance of S2-5 is (relatively) higher (I think)
-    \end{itemize}
-\end{itemize}
+%\begin{itemize}
+%    \item \textbf{Figure \ref{fig:mf_spatial_hists}:}
+%    \item \textbf{upper: S0: n=1, 2, 4}
+%    \begin{itemize}
+%        \item shows increase in variance with S incr
+%        \item \todo{How to explain n=4 kink at low mf?}
+%    \end{itemize}
+%    \item \textbf{lower: n=1: S0-5}
+%    \begin{itemize}
+%        \item decrease in mean mf with s incr.
+%        \item S2-5 similar
+%        \item note, there are far fewer clds in the domain for higher S, but width of S0 vs e.g. S4 is similar
+%        \item this means that variance of S2-5 is (relatively) lower (I think)
+%    \end{itemize}
+%\end{itemize}
+%
+We also want to know the variance of the different experiments at different spatial scales. To do this, we subdivide the domain into an equal number of square subregions, with lengths 1, 2 and 4 times smaller than the length of the domain. Each of these has respectively subregions with an area of \SI{256}{} $\times$ \SI{256}{km^2}, \SI{128}{} $\times$ \SI{128}{km^2}, \SI{64}{} $\times$ \SI{64}{km^2}. We then compute the histogram of the total convective mass flux within each subregion, the results can be seen in Figure \ref{fig:mf_spatial_hists}. The analysis is again carried out at \SI{2}{km}, although similar quantitative results are seen at \SI{1.5}{km} and \SI{2.5}{km} (not shown). The top figure shows the histogram for the S0 experiment over three different spatial scales. As was found in a previous study, the variance increases when the area of the subregion decreases \parencite{PC2008}. It should be noted that in their Figure 1, the prescribed cooling that they were using was far higher: \SI{16}{K.day^{-1}} as opposed to \SI{2}{K.day^{-1}}. They therefore see far more clouds in their domain, which leads to a much narrower distribution. The qualitative results remain the same though, as they decrease the size of their subregions, they see an increase in variance.
+
+In the lower figure in Figure \ref{fig:mf_spatial_hists}, we compare the total convective mass flux across the whole domain for our different experiments. Note that the blue dashed line is the same in both upper and lower figures. As the shear is increased, the total mass flux in the domain decreases, with the organized experiments all showing similar distributions. The width of the distributions across all the experiments is broadly the same. This coupled with the fact that there are far fewer clouds in the high shear experiments, means that the relative variance \todo{not sure how to phrase this} is actually lower.
 
 \begin{figure}[htp!]
     \centering
