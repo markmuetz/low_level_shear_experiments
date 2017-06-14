@@ -264,23 +264,28 @@ In the total convective mass flux, equal to the product of the mass flux per clo
 %    \item N.B. perhaps combined into one figure.
 %\end{itemize}
 
-\begin{itemize}
-    \item \textbf{Figure \ref{fig:mf_hists}:}
-    \item \textbf{upper:}
-    \begin{itemize}
-        \item this shows hist of $m$: $p(m) \times N_{cld}$
-        \item exponential decrease for S0, cf. \ref{eqn:pdf_mass_flux_per_cloud}
-        \item approx. exponential decrease for S1-5, but: fast drop at start? 2 slopes with break at \SI{1.25e8}{kg.s^{-1}}
-        \item S2-5: all similar
-    \end{itemize}
-    \item \textbf{lower:}
-    \begin{itemize}
-        \item this shows how much a given mf contributes to the total mf: $m \times p(m) \times N_{cld}$
-        \item as S up, max. contrib. comes from larger mf clds
-        \item S2-5 similar (again)
-    \end{itemize}
-\end{itemize}
+%\begin{itemize}
+%    \item \textbf{Figure \ref{fig:mf_hists}:}
+%    \item \textbf{upper:}
+%    \begin{itemize}
+%        \item this shows hist of $m$: $p(m) \times N_{cld}$
+%        \item exponential decrease for S0, cf. \ref{eqn:pdf_mass_flux_per_cloud}
+%        \item approx. exponential decrease for S1-5, but: fast drop at start? 2 slopes with break at \SI{1.25e8}{kg.s^{-1}}
+%        \item S2-5: all similar
+%    \end{itemize}
+%    \item \textbf{lower:}
+%    \begin{itemize}
+%        \item this shows how much a given mf contributes to the total mf: $m \times p(m) \times N_{cld}$
+%        \item as S up, max. contrib. comes from larger mf clds
+%        \item S2-5 similar (again)
+%    \end{itemize}
+%\end{itemize}
+%
+To test Equation \ref{eqn:pdf_mass_flux_per_cloud}, we present a histogram of the mass flux per cloud (Figure \ref{fig:mf_hists}, upper figure), at a height of \SI{2}{km}. We find excellent agreement with this PDF for the S0 case, with an exponential decrease in the number of clouds with a given mass flux. \todo{quantify this - fit a line}. This results matches previous findings by \cite{CC2006II}, cf. their Figure 2. The cloud diagnosis we are using is slightly different from the one they used: they used either a $w$ threshold or a cloud liquid water threshold; we use both together. They also performed their analysis at a different height: \SI{2.4}{km} instead of \SI{2}{km}. Performing the same analysis at \SI{1.5}{km} and \SI{2.5}{km} produces qualitatively similar results, although the exact number of clouds is different (not shown).
 
+For the sheared experiments, there is still good agreement with this exponential PDF. \todo{quantify} . The organized experiments all show similar behaviour. The number of clouds with low mass fluxes decreases with increasing shear, consistent with Figure \ref{fig:mf_profile}, centre. The maximum mass flux increases with increasing shear, consistent with Figure \ref{fig:mf_profile}, left.
+
+Figure \ref{fig:mf_hists} also shows a measure of how much clouds with a given mass flux contribute to the total mass flux ($m \times p(m) \times N_{cld}$, where $m$ is the mass flux per cloud, $p(m)$ is its PDF and $N_{cld}$ is the total number of clouds). From this it is possible to see which mass flux per cloud has the largest effect on the total mass flux. For S0, the clouds that have the largest effect are the ones with the lowest mass flux, i.e. there are a large number of clouds with a small mass flux. The maximum contribution increases with increasing shear; higher shear leads to larger clouds in terms of mass flux per cloud. \todo{this para is a little weak and not sure it adds much?}
 
 \begin{figure}[htp!]
     \centering
