@@ -127,7 +127,8 @@ The reference profiles, along with the mean wind from the model over the final d
     \label{fig:uv_profile}
 \end{figure}
 
-\subsection{Cloud definition}
+\subsection{Cloud diagnosis}
+\label{subsec:cloud_diag}
 
 \todo{description of how clouds defined for analysis, plus some mention of sensitivity to thresholds.}
 %\begin{itemize}
@@ -215,29 +216,37 @@ Experiments S2-5 all show a secondary maximum between \SI{5}{}-\SI{7}{km}. This 
     \label{fig:thermodyn_profile}
 \end{figure}
 
-\begin{itemize}
-    \item \textbf{Figure \ref{fig:mf_profile}:}
-    \item \textbf{left:}
-    \begin{itemize}
-        \item mf/cld up with S up
-        \item S2-5 all behave similarly
-        \item S0/1: mf/cld approx const, link to \cite{PC2008}
-        \item S2-5: mf/cld proportional to z, max at 10 km
-    \end{itemize}
-    \item \textbf{middle:}
-    \begin{itemize}
-        \item S0/1: number clds up with z up
-        \item S2-5: number of clouds approx const with height
-        \item max number clouds down with S up
-        \item S2-5: no secondary max at 5-7 km (cf. Fig \ref{fig:thermodyn_profile}). expl: presence of non-conv (stratiform) cld
-    \end{itemize}
-    \item \textbf{right:}
-    \begin{itemize}
-        \item S0: largest, max at 4 km
-        \item S2-5: similar, max at 6-8 km
-        \item \todo{say more!}
-    \end{itemize}
-\end{itemize}
+%\begin{itemize}
+%    \item \textbf{Figure \ref{fig:mf_profile}:}
+%    \item \textbf{left:}
+%    \begin{itemize}
+%        \item mf/cld up with S up
+%        \item S2-5 all behave similarly
+%        \item S0/1: mf/cld approx const, link to \cite{PC2008}
+%        \item S2-5: mf/cld proportional to z, max at 10 km
+%    \end{itemize}
+%    \item \textbf{middle:}
+%    \begin{itemize}
+%        \item S0/1: number clds down with z up
+%        \item S2-5: number of clouds approx const with height
+%        \item max number clouds down with S up
+%        \item S2-5: no secondary max at 5-7 km (cf. Fig \ref{fig:thermodyn_profile}). expl: presence of non-conv (stratiform) cld
+%    \end{itemize}
+%    \item \textbf{right:}
+%    \begin{itemize}
+%        \item S0: largest, max at 4 km
+%        \item S2-5: similar, max at 6-8 km
+%        \item \todo{say more!}
+%    \end{itemize}
+%\end{itemize}
+
+\todo{switch order of subfigs? Go number of clouds, MF/cld, Total MF as this is the order it's most logical to talk about them in?}
+
+Figure \ref{fig:mf_profile} shows, from left to right, profiles of the mass flux per cloud, the number of clouds and the total convective mass flux. Clouds are diagnosed as set out in Section \ref{subsec:cloud_diag}. The leftmost profile shows that there is a distinct difference between the two unorganized experiments, S0 and S1, and the organized experiments, S2-5. The organized experiments all show an increase in mass flux per cloud as height increases, reaching maximum values at around \SI{10}{km}. This can be explained by noting that the number of clouds is approximately constant for these experiments, and therefore the latent heat released in the updraught acts to strengthen the total mass flux. In contrast, the mass flux per cloud in S0 and S1 is approximately constant over the troposphere. There are two balancing effects in this case - there are fewer clouds at higher heights, and each cloud that makes it to a certain height will be stronger due to the reason above. Similar behaviour was seen in \cite{PC2008}. Mass flux per cloud increases as the shear increases. This could indicate that the shear has an inhibiting effect on convection, and so a larger and stronger cloud must form in order to overcome this inhibition.
+
+From the number of clouds, there is again a clear relationship - above \SI{1}{km}, as the shear increases, the number of clouds decreases. The clouds also start forming at a lower height for the strongly sheared experiments. There is, once again, a distinction between the behaviour of the unorganized and organized cases. In the organized experiments, the number of clouds decreases with increasing height, with a clearly defined maximum at \SI{1.5}{km}. What is conspicuous by its absence is a secondary maximum in the number of clouds for the organized experiments. When compared to the cloud liquid water in Figure \ref{fig:thermodyn_profile}, this shows that the cloud diagnosis is effectively filtering out this region of stratiform cloud. This backs up the assertion that the maximum in cloud liquid water is caused by a region of trailing stratiform cloud.
+
+In the total convective mass flux, equal to the product of the mass flux per cloud and the number of clouds, S0 is seen to have the largest absolute value. This implies that the gradient $\frac{d \theta}{dz}$ must be least for this experiment \todo{lay the groundwork for this assertion earlier - heating is due to subs. and $mf \times \frac{d \theta}{dz}$ is proportional to the heating}. The other experiments all show more closely grouped values, with the organized experiments increasing in the upper troposphere, with a maximum value between \SI{6}{}-\SI{8}{km}. \todo{what more can I say about this?}
 
 \begin{figure}[htp!]
     \centering
@@ -271,6 +280,7 @@ Experiments S2-5 all show a secondary maximum between \SI{5}{}-\SI{7}{km}. This 
         \item S2-5 similar (again)
     \end{itemize}
 \end{itemize}
+
 
 \begin{figure}[htp!]
     \centering
