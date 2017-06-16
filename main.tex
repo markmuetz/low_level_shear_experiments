@@ -99,7 +99,7 @@ Understanding how the convective mass flux fluctuates around a mean value can th
 %\end{itemize}
 
 % Model, resolution, domain.
-The model used is the UK Met Office Unified Model, version 10.7 \parencite{walters2017met}, run in its idealized configuration. It is a fully compressible, non-hydrostatic model, and its dynamics are modelled using a Semi-Implicit, Semi-Lagrangian (SISL) advection scheme. It is run using Cartesian coordinates, over a bi-periodic domain of 256$\times$256 \SI{}{km^2}, using a horizontal resolution of \SI{2}{km} and a \SI{30}{s} timestep. It uses a variable vertical resolution taken from the Large Eddy Model \parencite{todocite}, starting at \SI{63.22}{m} at the surface, increasing to \SI{250}{m} by \SI{2.5}{km}. The resolution increases again above \SI{15}{km}, increasing to \SI{1}{km} by \SI{25}{km} where at remains up to the top of the model at \SI{40}{km}. \todo{Add vert res profile to Figure \ref{fig:uv_profile}}
+The model used is the UK Met Office Unified Model, version 10.7 \parencite{walters2017met}, run in its idealized configuration. It is a fully compressible, non-hydrostatic model, and its dynamics are modelled using a Semi-Implicit, Semi-Lagrangian (SISL) advection scheme. It is run using Cartesian coordinates, over a bi-periodic domain of 256$\times$256 \SI{}{km^2}, using a horizontal resolution of \SI{2}{km} and a \SI{30}{s} timestep. It uses a variable vertical resolution taken from the Large Eddy Model \parencite{todocite}, starting at \SI{63.22}{m} at the surface, increasing to \SI{250}{m} by \SI{2.5}{km}. The resolution increases again above \SI{15}{km}, increasing to \SI{1}{km} by \SI{25}{km} where at remains up to the top of the model at \SI{40}{km}. The change in vertical resolution with height below \SI{25}{km} can be seen in Figure \ref{fig:input_profiles}, leftmost.
 The experiments are run for \SI{20}{days}, enough time for the simulations to reach equilibrium and for sufficient statistics about the model state to be gathered. 
 
 No convection parametrization scheme is used, instead the convection is explicitly modelled by the dynamics and the subgrid parametrization schemes of the model that are in use. The model uses a 3D Smagorinsky subgrid turbulence mixing scheme \parencite{todocite}. It includes prognostic ice and graupel in its microphysics, as well as a two moment moist microphysics scheme \parencite{todocite}. \todo{BL}. The surface is treated as ocean, with a fixed temperature of \SI{300}{K} and a friction roughness length of \SI{0.0002}{m}. The surface heat and moisture fluxes are modelled using bulk aerodynamic formulae, using the same roughness length of \SI{0.0002}{m}.
@@ -117,8 +117,8 @@ For the purposes of this study, in which we wish to study the dynamical interact
 
 Each simulation is started with an initial moisture and potential profile taken from the final state of a previous reference run. \todo{what can I say about this other than it comes from an LEM simulation?}. Simulations are allowed to spin-up for \SI{5}{days} while the surface fluxes come into balance with the energy and precipitation losses from the model. Output from the model is only analysed after the initial spin-up period.
 
-A prescribed cooling rate of \SI{2}{K.day^{-1}} is applied from the surface to \SI{200}{hPa}, decreasing linearly to \SI{0}{K.day^{-1}} by \SI{100}{hPa}. This cooling rate is comparable to typical radiative cooling rates over the tropics. Larger cooling rates representing large-scale convergence and forced ascent, ranging from \SI{4}{K.day^{-1}} to \SI{16}{K.day^{-1}}, were also tested. However, when the model was forced with these rates, it developed a large-scale, domain wide oscillation, thought to be a convectively coupled gravity wave with period equal to the largest scale available to the disturbance - the length of the domain. These oscillations are a form of organization, and so affect the fluctuations that we are trying to measure. They are also an artefact of the modelling process due to the bi-periodic nature of the boundary conditions, and so are little more than a curiosity and an annoyance. We therefore decided to run with smaller cooling rates that did not stimulate this mode of organization.
-\todo{add cooling profile to Figure \ref{fig:uv_profile}}
+A prescribed cooling rate of \SI{2}{K.day^{-1}} is applied from the surface to \SI{200}{hPa}, decreasing linearly with pressure to \SI{0}{K.day^{-1}} by \SI{100}{hPa} (see Figure \ref{fig:input_profiles}, middle). This cooling rate is comparable to typical radiative cooling rates over the tropics. Larger cooling rates representing large-scale convergence and forced ascent, ranging from \SI{4}{K.day^{-1}} to \SI{16}{K.day^{-1}}, were also tested. However, when the model was forced with these rates, it developed a large-scale, domain wide oscillation, thought to be a convectively coupled gravity wave with period equal to the largest scale available to the disturbance - the length of the domain. These oscillations are a form of organization, and so affect the fluctuations that we are trying to measure. They are also an artefact of the modelling process due to the bi-periodic nature of the boundary conditions, and so are little more than a curiosity and an annoyance. We therefore decided to run with smaller cooling rates that did not stimulate this mode of organization.
+
 
 \subsection{Shear profiles and experiments}
 
@@ -126,13 +126,13 @@ The shear profile that we choose to impose was originally derived from the Marsh
 
 \todo{S0-S5 - linear scalings of the basic profile.}
 
-The reference profiles, along with the mean wind from the model over the final day of the simulation for each of the experiments, is given in Figure \ref{fig:uv_profile}.
+The reference profiles, along with the mean wind from the model over the final day of the simulation for each of the experiments, is given in Figure \ref{fig:input_profiles}.
 
 \begin{figure}[htp!]
     \centering
-    \includegraphics{figs/{atmos.profile_plot.uv_profile}.png}
+    \includegraphics[width=400px]{figs/{atmos.profile_plot.input_profiles}.png}
     \caption{\todo{add vert res, cooling profiles} The reference profile, and the mean wind over the full domain averaged over the final day of each simulation, S0-S5. }
-    \label{fig:uv_profile}
+    \label{fig:input_profiles}
 \end{figure}
 
 \subsection{Cloud diagnosis}
@@ -212,7 +212,7 @@ The spatial distribution also suggests another difference between the two experi
     \label{fig:thermodyn_profile}
 \end{figure}
 
-Profiles from each of the experiments of $\theta$ and cloud liquid water are shown in Figure \ref{fig:thermodyn_profile}. For the $\theta$ profiles, two lines are plotted for each experiment, the solid line is the domain averaged $\theta$ profile, and the dashed line is the in-cloud $\theta$ profile. The markers at the bottom and top of the dashed lines therefore denote lifting condensation level (LCL) and clouds top height respectively. As can be seen from Figure \ref{fig:uv_profile}, in our experimental setup, surface winds increase with increasing shear profile. This explains why the surface value of $\theta$ is closer to \SI{300}{K}, the SST, for increasing shear profile, as a smaller temperature difference is needed to produce the required heat fluxes to balance the prescribed cooling. In all experiments, $\theta$ is approximately constant in the boundary layer. The LCL can be seen from the markers at the end of the dashed lines, this decreases slightly with increasing shear \todo{why?}. 
+Profiles from each of the experiments of $\theta$ and cloud liquid water are shown in Figure \ref{fig:thermodyn_profile}. For the $\theta$ profiles, two lines are plotted for each experiment, the solid line is the domain averaged $\theta$ profile, and the dashed line is the in-cloud $\theta$ profile. The markers at the bottom and top of the dashed lines therefore denote lifting condensation level (LCL) and clouds top height respectively. As can be seen from Figure \ref{fig:input_profiles}, in our experimental setup, surface winds increase with increasing shear profile. This explains why the surface value of $\theta$ is closer to \SI{300}{K}, the SST, for increasing shear profile, as a smaller temperature difference is needed to produce the required heat fluxes to balance the prescribed cooling. In all experiments, $\theta$ is approximately constant in the boundary layer. The LCL can be seen from the markers at the end of the dashed lines, this decreases slightly with increasing shear \todo{why?}. 
 
 \todo{pick between descriptions:}
 [Above the LCL, all experiments show approximately constant $\frac{d \theta}{dz}$ up to \SI{7}{}-\SI{9}{km}, with the height at which the gradient changes increasing with increasing shear \todo{why approx. const? Shouldn't it follow a moist-adiabat, i.e. be curved? Could be due to there being fewer clouds at higher heights? No obvious changes in qcl/#clds etc. at this height}. ]
