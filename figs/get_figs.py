@@ -26,6 +26,7 @@ DATAM_FILENAMES = [
     'suite_results/figs/./atmos.precip_plot.time_index1865.png',
     'suite_results/figs/./atmos.precip_plot.time_index1870.png',
     'suite_results/figs/./atmos.profile_plot.dz_profile.png',
+    'suite_results/figs/./atmos.profile_plot.momentum_flux_profile.png',
 ]
 
 DATAW_FILENAMES = [
