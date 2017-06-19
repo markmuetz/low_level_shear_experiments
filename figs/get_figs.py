@@ -14,7 +14,7 @@ DATAW="{}/{}/work/20000101T0000Z".format(DIR, SUITE)
 
 # Remember to put a . in where you want the rel dir to start.
 DATAM_FILENAMES = [
-    'suite_results/figs/./atmos.org_plot.z1_combined_log.png',
+    'suite_results/figs/./atmos.org_plot.z?_combined_log.png',
     'suite_results/figs/./atmos.profile_plot.uv_profile.png',
     'suite_results/figs/./atmos.mass_flux_plot.z0_both.png',
     'suite_results/figs/./atmos.mass_flux_plot.z1_both.png',
