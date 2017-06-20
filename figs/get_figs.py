@@ -32,6 +32,7 @@ DATAM_FILENAMES = [
     'suite_results/figs/./atmos.surf_flux_plot.energy_flux.csv',
     './S?/figs/atmos.936.profile_analysis.energy_loss.txt',
     'suite_results/figs/./atmos.precip_plot.max_precip.csv',
+    'suite_results/figs/./atmos.mass_flux_plot.mf_linregress.csv',
 ]
 
 DATAW_FILENAMES = [
