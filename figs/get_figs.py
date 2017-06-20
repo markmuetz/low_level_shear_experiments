@@ -24,11 +24,14 @@ DATAM_FILENAMES = [
     'suite_results/figs/./atmos.mass_flux_spatial_scales_plot.both_z2.png',
     'suite_results/figs/./atmos.profile_plot.thermodynamic_profile.png',
     'suite_results/figs/./atmos.profile_plot.mf_profile.png',
-    'suite_results/figs/./atmos.precip_plot.time_index*.png',
+    'suite_results/figs/./atmos.precip_plot.time_index3822.png',
     'suite_results/figs/./atmos.profile_plot.dz_profile.png',
     'suite_results/figs/./atmos.profile_plot.momentum_flux_profile.png',
     'suite_results/figs/./atmos.profile_plot.input_profiles.png',
     'suite_results/figs/./atmos.surf_flux_plot.energy_fluxes.png',
+    'suite_results/figs/./atmos.surf_flux_plot.energy_flux.csv',
+    './S?/figs/atmos.936.profile_analysis.energy_loss.txt',
+    'suite_results/figs/./atmos.precip_plot.max_precip.csv',
 ]
 
 DATAW_FILENAMES = [
