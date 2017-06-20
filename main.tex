@@ -135,20 +135,6 @@ No convection parametrization scheme is used, instead the convection is explicit
 
 All simulations are run with a Coriolis parameter, $f$, equal to 0. They are run without geostrophic forcing.
 
-\subsection{Moisture and energy balance}
-
-The SISL advection scheme allows for a large timestep without becoming unstable. Such schemes are not conservative; there is no guarantee that there will be the same total quantity of a tracer from one timestep to the next. In preliminary tests, we found that this had a large impact on the total water content in the model. The non-conservation of moisture leads to precipitation rates being three times higher than what would be expected through comparison with evaporation rates. To ameliorate this, we used the Optimized Conservative Filter (OCF) moisture conservation scheme \parencite{zerroukat2015monotonic}, developed previously for this purpose. This scheme is similar to the Priestley scheme \parencite{priestley1993quasi}, in that it compares the total water content at two consecutive timesteps and ensures conservation by adding or removing water vapour as necessary from grid-cells. It does this in a way that is consistent with the uncertainty caused by using interpolation in the SISL scheme, using linear and higher order interpolation as bounds in which it can modify the water vapour in a grid-cell, while staying as close as possible to the higher order solution. With the OCF scheme in use, moisture conservation is guaranteed and once the model has reached equilibrium, precipitation balances evaporation as it should (see Figure \ref{fig:energy_fluxes}).
-
-In a similar manner to moisture, the SISL scheme can also lead to a non-conservation of energy. No suitable scheme for energy conservation is available in the UM, and so the effects of this energy non-conservation must be characterized and taken into account. This manifests itself as an imbalance between the prescribed cooling energy loss, and the energy input into the model through the surface latent and sensible heat fluxes. Essentially, energy is being supplied by the dynamics of the model, which means that the surface fluxes are less than what would be expected to balance the prescribed cooling by around \SI{30}{W.m^{-2}} for S0 to \SI{75}{W.m^{-2}} for S4 (See Figure \ref{fig:energy_fluxes}). \todo{Get these numbers direct from the data}, \todo{do calc again using data from model about how much the expected heat flux should be, at around \SI{200}{W.m^{-2}}}.
-For the purposes of this study, in which we wish to study the dynamical interactions between clouds, this is not an issue. This is supported by the fact that the imbalance mainly affects the stratosphere, i.e. it is far from the area of interest in this study. However, if a detailed energy budget were the focus of the investigation, this would become of prime importance and it would be necessary to either account for the imbalance rigorously, or to apply a similar scheme as the OCF scheme described above for energy conservation. 
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=400px]{figs/{atmos.surf_flux_plot.energy_fluxes}.png}
-    \caption{}
-    \label{fig:energy_fluxes}
-\end{figure}
-
 \subsection{Initial and cooling profiles}
 
 Each simulation is started with an initial moisture and potential temperature profile that was designed to be a reference profile for the Large Eddy Model \parencite{petch2001sensitivity}, with a uniform $u$ wind of \SI{5}{m.s^{-1}}. These profiles are not the equilibrium profiles for our experiments, and so we allow the simulations to spin-up until they have reached their equilibrium states. They are allowed to spin-up for \SI{20}{days} while the surface fluxes come into balance with the energy and precipitation losses from the model (see Figure \ref{fig:energy_fluxes}). Output from the model is only analysed after the initial spin-up period.
@@ -169,6 +155,20 @@ The reference profiles, along with the mean wind from the model over the final d
     \includegraphics[width=400px]{figs/{atmos.profile_plot.input_profiles}.png}
     \caption{The reference profile, and the mean wind over the full domain averaged over the final day of each simulation, S0-S4. }
     \label{fig:input_profiles}
+\end{figure}
+
+\subsection{Moisture and energy balance}
+
+The SISL advection scheme allows for a large timestep without becoming unstable. Such schemes are not conservative; there is no guarantee that there will be the same total quantity of a tracer from one timestep to the next. In preliminary tests, we found that this had a large impact on the total water content in the model. The non-conservation of moisture leads to precipitation rates being three times higher than what would be expected through comparison with evaporation rates. To ameliorate this, we used the Optimized Conservative Filter (OCF) moisture conservation scheme \parencite{zerroukat2015monotonic}, developed previously for this purpose. This scheme is similar to the Priestley scheme \parencite{priestley1993quasi}, in that it compares the total water content at two consecutive timesteps and ensures conservation by adding or removing water vapour as necessary from grid-cells. It does this in a way that is consistent with the uncertainty caused by using interpolation in the SISL scheme, using linear and higher order interpolation as bounds in which it can modify the water vapour in a grid-cell, while staying as close as possible to the higher order solution. With the OCF scheme in use, moisture conservation is guaranteed and once the model has reached equilibrium, precipitation balances evaporation as it should (see Figure \ref{fig:energy_fluxes}).
+
+In a similar manner to moisture, the SISL scheme can also lead to a non-conservation of energy. No suitable scheme for energy conservation is available in the UM, and so the effects of this energy non-conservation must be characterized and taken into account. This manifests itself as an imbalance between the prescribed cooling energy loss, and the energy input into the model through the surface latent and sensible heat fluxes. Essentially, energy is being supplied by the dynamics of the model, which means that the surface fluxes are less than what would be expected to balance the prescribed cooling by around \SI{30}{W.m^{-2}} for S0 to \SI{75}{W.m^{-2}} for S4 (See Figure \ref{fig:energy_fluxes}). \todo{Get these numbers direct from the data}, \todo{do calc again using data from model about how much the expected heat flux should be, at around \SI{200}{W.m^{-2}}}.
+For the purposes of this study, in which we wish to study the dynamical interactions between clouds, this is not an issue. This is supported by the fact that the imbalance mainly affects the stratosphere, i.e. it is far from the area of interest in this study. However, if a detailed energy budget were the focus of the investigation, this would become of prime importance and it would be necessary to either account for the imbalance rigorously, or to apply a similar scheme as the OCF scheme described above for energy conservation. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=400px]{figs/{atmos.surf_flux_plot.energy_fluxes}.png}
+    \caption{}
+    \label{fig:energy_fluxes}
 \end{figure}
 
 \subsection{Cloud diagnosis}
@@ -291,13 +291,39 @@ The height of the tropopause can be seen from the location of the change in grad
 %    \end{itemize}
 %\end{itemize}
 
+\todo{reword this section}
+In the total convective mass flux, equal to the product of the mass flux per cloud and the number of clouds, S0 is seen to have the largest absolute value. This implies that the gradient $\frac{d \theta}{dz}$ must be least for this experiment, as the heating is due to subsidence, and $mf \times \frac{d \theta}{dz}$ is proportional to the heating. The other experiments all show more closely grouped values, with the organized experiments increasing in the upper troposphere, with maximum values between \SI{6}{}-\SI{8}{km}. 
+%\todo{what more can I say about this?}
+
+\subsection{Cloud field organization}
+
+%\begin{itemize}
+%    \item Figure \ref{fig:org}: Measure of organization demonstrating effectively the higher organization in the organized convection cases.
+%\end{itemize}
+The degree of clustering at a given spatial scale of each experiment can be estimated by calculating the normalized cloud number density as a function of the distance between the clouds (Figure \ref{fig:org}). This is essentially a histogram of how many clouds there are in a given annular region from every cloud, divided by the area of the annular region and normalized by the total number of clouds in the area \parencite{CC2006II}. A randomly distributed cloud field would have a value of 1 for all spatial scales (dashed line). This analysis tells us whether clouds form preferentially or are suppressed at a given spatial scale, dependent on whether the value at a given spatial scale is above or below the randomly distributed value of 1.
+
+From Figure \ref{fig:org}, we can see that there is clustering at the smallest scales for all the experiments. For S0, we see a maximum value of around 3, and we see that the clustering only happens on a short spatial scale, less than around \SI{10}{km}. These findings agree closely with those of \cite{CC2006II}, who find a maximum value of the normalized cloud number density or around 2.9 for their \SI{2}{K.day^{-1}} experiment, and this value decreases to 1 by around \SI{10}{km} (their Figure 6). For S1, there is a similar signal, although the degree of clustering at short distances and the spatial scale over which the clustering are both slightly larger. 
+
+For S2, there is more clustering at shorter scales, and the scale of clustering is slightly larger. Now there is also distinct suppression of convection at scales between \SI{25}{km} and \SI{70}{km}. S3 and S4 both show very high levels of short range clustering, and this clustering now takes place on much larger spatial scales of up to \SI{50}{km}. There is also a degree of suppression between \SI{60}{km} and \SI{175}{km} for S3, and \SI{230}{km} for S4. Clustering appears to pick up again at \SI{250}{km}: this is due to the bi-periodic nature of the domain and is detecting the signal of the clustering of the linear convection with itself. These results are consistent with the findings of \cite{CC2006II} (their Figure 6 (a)), although a direct comparison of numerical values is not possible as their sheared experiments were forced with \SI{8}{K.day^{-1}} cooling.
+
+Overall the results from Figure \ref{fig:org} are broadly consistent with the other results in this study, in that they show a high degree of similarity for experiments S3-4. However, in the other results, S2 has appeared to be closer in nature to the organized experiments, whereas here it seems to show behaviour that is in between the organized and unorganized experiments. This would seem to indicate that shear profile that generated these data is in some sense ``on the cusp'', between stimulating organization and not.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=400px]{figs/{atmos.org_plot.z1_combined_log}.png}
+    \caption{}
+    \label{fig:org}
+\end{figure}
+
+\subsection{Mass flux}
+
+\subsection{Mass flux profiles}
+
 Figure \ref{fig:mf_profile} shows, from left to right, profiles of the number of clouds, the mass flux per cloud and the total convective mass flux. Clouds are diagnosed as set out in Section \ref{subsec:cloud_diag}. All three profiles shows that there is a distinct difference between the two unorganized experiments, S0 and S1, and the organized experiments, S2-4. 
 
 % \todo{weak!}
 From the number of clouds in the leftmost figure in Figure \ref{fig:mf_profile}, there is a clear relationship - above \SI{1}{km}, as the shear increases, the number of clouds decreases. The clouds also start forming at a lower height for the strongly sheared experiments. There is a distinction between the behaviour of the unorganized and organized cases. In the unorganized experiments, the number of clouds decreases with increasing height, with a clearly defined maximum at \SI{1.5}{km}. However, in the organized experiments, the number of clouds is approximately constant with height.
 %What is conspicuous by its absence is a secondary maximum in the number of clouds profile for the organized experiments. When compared to the cloud liquid water in Figure \ref{fig:thermodyn_profile}, this shows that the cloud diagnosis is effectively filtering out this region of stratiform cloud. This supports the assertion that the maximum in cloud liquid water is caused by a region of trailing stratiform cloud.
-
-The organized experiments all show an increase in mass flux per cloud as height increases, reaching maximum values at around \SI{10}{km}. This, coupled with the fact that the number of clouds is approximately constant for these experiments, means that each convective updraught must be getting stronger. One possible explanation for this could be that the latent heat released in the updraught acts to strengthen the total mass flux in those plumes by increasing their buoyancy. In contrast, the mass flux per cloud in S0 is approximately constant over the troposphere, with values ranging from \SI{1e7}{kg.m^{-1}} just above the LCL to \SI{2.5e7}{kg.m^{-1}} by \SI{6}{km}. Speculatively, this suggests that there are two balancing effects in this case - there are fewer clouds at higher heights, and each cloud that makes it to a certain height will be stronger. Almost constant mass flux per cloud was also seen in \cite{PC2008}, although their study used cooling rates of \SI{4}{K.day^{-1}} and \SI{8}{K.day^{-1}} for their mass flux profiles. They find that the value for mass flux per cloud is insensitive to cooling rate however, and use the value \SI{2e7}{kg.s^{-1}} as their constant value, which is consistent with the range of values seen here. Mass flux per cloud is seen to increase as the shear increases. This could indicate that the shear has an inhibiting effect on convection, and so a larger and stronger cloud must form in order to overcome this inhibition.
 
 \begin{figure}[h]
     \centering
@@ -306,11 +332,7 @@ The organized experiments all show an increase in mass flux per cloud as height 
     \label{fig:mf_profile}
 \end{figure}
 
-\todo{reword this section}
-In the total convective mass flux, equal to the product of the mass flux per cloud and the number of clouds, S0 is seen to have the largest absolute value. This implies that the gradient $\frac{d \theta}{dz}$ must be least for this experiment, as the heating is due to subsidence, and $mf \times \frac{d \theta}{dz}$ is proportional to the heating. The other experiments all show more closely grouped values, with the organized experiments increasing in the upper troposphere, with maximum values between \SI{6}{}-\SI{8}{km}. 
-%\todo{what more can I say about this?}
-
-\subsection{Mass flux variability}
+The organized experiments all show an increase in mass flux per cloud as height increases, reaching maximum values at around \SI{10}{km}. This, coupled with the fact that the number of clouds is approximately constant for these experiments, means that each convective updraught must be getting stronger. One possible explanation for this could be that the latent heat released in the updraught acts to strengthen the total mass flux in those plumes by increasing their buoyancy. In contrast, the mass flux per cloud in S0 is approximately constant over the troposphere, with values ranging from \SI{1e7}{kg.m^{-1}} just above the LCL to \SI{2.5e7}{kg.m^{-1}} by \SI{6}{km}. Speculatively, this suggests that there are two balancing effects in this case - there are fewer clouds at higher heights, and each cloud that makes it to a certain height will be stronger. Almost constant mass flux per cloud was also seen in \cite{PC2008}, although their study used cooling rates of \SI{4}{K.day^{-1}} and \SI{8}{K.day^{-1}} for their mass flux profiles. They find that the value for mass flux per cloud is insensitive to cooling rate however, and use the value \SI{2e7}{kg.s^{-1}} as their constant value, which is consistent with the range of values seen here. Mass flux per cloud is seen to increase as the shear increases. This could indicate that the shear has an inhibiting effect on convection, and so a larger and stronger cloud must form in order to overcome this inhibition.
 
 %\subsection{Spatial variability}
 %\begin{itemize}
@@ -378,26 +400,6 @@ We also want to know the variance of the different experiments at different spat
 
 
 In the lower figure in Figure \ref{fig:mf_spatial_hists}, we compare the total convective mass flux across the whole domain for our different experiments. Note that the solid blue line is the same in both upper and lower figures. As the shear is increased, the total mass flux in the domain decreases, with the organized experiments all showing similar distributions. The width of the distributions across all the experiments is broadly the same. \todo{Don't fully understand this, can we discuss? Thought the variance increase would be bigger.} %This coupled with the fact that there are far fewer clouds in the high shear experiments, means that the relative variance \todo{not sure how to phrase this} is actually lower.
-
-\subsection{Cloud field organization}
-
-%\begin{itemize}
-%    \item Figure \ref{fig:org}: Measure of organization demonstrating effectively the higher organization in the organized convection cases.
-%\end{itemize}
-The degree of clustering at a given spatial scale of each experiment can be estimated by calculating the normalized cloud number density as a function of the distance between the clouds (Figure \ref{fig:org}). This is essentially a histogram of how many clouds there are in a given annular region from every cloud, divided by the area of the annular region and normalized by the total number of clouds in the area \parencite{CC2006II}. A randomly distributed cloud field would have a value of 1 for all spatial scales (dashed line). This analysis tells us whether clouds form preferentially or are suppressed at a given spatial scale, dependent on whether the value at a given spatial scale is above or below the randomly distributed value of 1.
-
-From Figure \ref{fig:org}, we can see that there is clustering at the smallest scales for all the experiments. For S0, we see a maximum value of around 3, and we see that the clustering only happens on a short spatial scale, less than around \SI{10}{km}. These findings agree closely with those of \cite{CC2006II}, who find a maximum value of the normalized cloud number density or around 2.9 for their \SI{2}{K.day^{-1}} experiment, and this value decreases to 1 by around \SI{10}{km} (their Figure 6). For S1, there is a similar signal, although the degree of clustering at short distances and the spatial scale over which the clustering are both slightly larger. 
-
-For S2, there is more clustering at shorter scales, and the scale of clustering is slightly larger. Now there is also distinct suppression of convection at scales between \SI{25}{km} and \SI{70}{km}. S3 and S4 both show very high levels of short range clustering, and this clustering now takes place on much larger spatial scales of up to \SI{50}{km}. There is also a degree of suppression between \SI{60}{km} and \SI{175}{km} for S3, and \SI{230}{km} for S4. Clustering appears to pick up again at \SI{250}{km}: this is due to the bi-periodic nature of the domain and is detecting the signal of the clustering of the linear convection with itself. These results are consistent with the findings of \cite{CC2006II} (their Figure 6 (a)), although a direct comparison of numerical values is not possible as their sheared experiments were forced with \SI{8}{K.day^{-1}} cooling.
-
-Overall the results from Figure \ref{fig:org} are broadly consistent with the other results in this study, in that they show a high degree of similarity for experiments S3-4. However, in the other results, S2 has appeared to be closer in nature to the organized experiments, whereas here it seems to show behaviour that is in between the organized and unorganized experiments. This would seem to indicate that shear profile that generated these data is in some sense ``on the cusp'', between stimulating organization and not.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=400px]{figs/{atmos.org_plot.z1_combined_log}.png}
-    \caption{}
-    \label{fig:org}
-\end{figure}
 
 \section{Discussion and conclusions}
 
