@@ -42,6 +42,16 @@ For the actual analysis, the main suite used was \href{https://code.metoffice.go
 
 Analysis was done using \href{https://github.com/markmuetz/omnium}{omnium} and \href{https://github.com/markmuetz/scaffold_analysis}{scaffold\_analysis}. 
 
+\section{Energy loss}
+
+\begin{itemize}
+    \item Cooling rate: $C(z)$; [\SI{}{K.s^{-1}}]
+    \item Energy loss (rate): $E_{loss} = \int_{0}^{TOA} \rho c_p C(z) dz$; [\SI{}{W.m^{-2}}]
+    \item Hydrostatic equation: $\frac{dp}{dz} = - \rho g$
+    \item Therefore:
+    \item Energy loss (rate): $E_{loss} = - \frac{c_p}{g} \int_{p_{TOA}}^{p_0} C(z) dz$; [\SI{}{W.m^{-2}}]
+\end{itemize}
+
 \section{Extra figs}
 
 \begin{figure}[htp!]

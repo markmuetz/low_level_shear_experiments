@@ -13,7 +13,7 @@
 \newcommand*\mean[1]{\overline{#1}}
 \newcommand\todo[1]{\textbf{TODO: #1}}
 
-\title{Effects of Vertical Shear on Cloud Field Variability and Organization }
+\title{Effects of Vertical Shear on Cloud Field Organization and Variability}
 \author{Mark Muetzelfeldt, Robert Plant and  Peter Clark}
 \date{June 2017}
 
@@ -54,6 +54,9 @@
 \begin{document}
 
 \maketitle
+\section*{Abstract}
+\todo{write abstract}
+
 \section{Introduction}
 
 %\begin{itemize}
@@ -98,6 +101,9 @@ Understanding how the convective mass flux fluctuates around a mean value can th
     \item Use these properties to compute convective tendencies, as in a standard convection parametrization scheme.
 \end{enumerate}
 
+It is our goal that the work in this study will lead to a better understanding of \textit{how} the equilibrium distribution needed for step 3 varies with the vertical shear in the domain. This could lead to modifications of a stochastic convection parametrization scheme so that it can represent some of the effects of vertical shear. In particular, it should provide a route to including some of the effects of spatial organization into the scheme. 
+
+\subsection{Organization in CRMs}
 CRMs can exhibit different modes of organization. For example, when run with interactive radiation, CRMs can display convective self-aggregation \parencite{wing2017convective}. 
 This is where convection develops in a large subregion of the domain, often related to the domain size of the model, whilst outside of this region compensating subsidence occurs. Many mechanisms for this have been found, and may be different from model to model. 
 However, longwave radiation feedback has been found to be essential for its formation \parencite{wing2017convective}. As we wish to isolate the organization stimulated by shear, we use a uniform prescribed cooling profile over our domain, thus removing longwave radiation feedbacks and ensuring that convective self-aggregation will not occur.
@@ -109,10 +115,9 @@ Vertical wind shear has long been known to play a vital role in forming squall l
 % I can't think of how to bring this up without seeming to shoe-horn it in. Some of the ideas have been addressed in the above para.
 %\todo{Stoch. p13n/QES: talk about why QES/RCE is a good way of running an RCE expt for use in a stoch. p13n. How you can use the results, the inverse model etc.}
 
-It is our goal that the work in this study will lead to a better understanding of \textit{how} the equilibrium distribution needed for step 3 varies with the vertical shear in the domain. This could lead to modifications of a stochastic convection parametrization scheme so that it can represent some of the effects of vertical shear. In particular, it should provide a route to including some of the effects of spatial organization into the scheme. 
-
 %The theoretical relationships allow us the characterize how mass flux will vary. Mass flux is a key parameter in convection parametrization schemes, as it value is used to determine the behaviour of a cloud model. This will typically lead to a moistening of the upper troposphere through detrainment from the cloud, as well as a heating of the troposphere, primarily through the compensating subsidence. The magnitude of the mass flux is determined through the use of a closure based on the grid-column state of the model. A popular choice of closure is the Convective Available Potential Energy (CAPE) closure assumption, whereby a percentage of the CAPE is assumed to [be consumed] by the convection in a given timestep. This can be used to set the mass flux by iterating towards the required value or by theoretical arguments. The magnitude of the mass flux then determines how much heating and moistening of the atmosphere will happen because of the unresolved convection, through the use of a cloud model.
 
+\newpage
 \section{Model and experimental design}
 
 \subsection{Model configuration}
@@ -159,10 +164,11 @@ The reference profiles, along with the mean wind from the model over the final d
 
 \subsection{Moisture and energy balance}
 
-The SISL advection scheme allows for a large timestep without becoming unstable. Such schemes are not conservative; there is no guarantee that there will be the same total quantity of a tracer from one timestep to the next. In preliminary tests, we found that this had a large impact on the total water content in the model. The non-conservation of moisture leads to precipitation rates being three times higher than what would be expected through comparison with evaporation rates. To ameliorate this, we used the Optimized Conservative Filter (OCF) moisture conservation scheme \parencite{zerroukat2015monotonic}, developed previously for this purpose. This scheme is similar to the Priestley scheme \parencite{priestley1993quasi}, in that it compares the total water content at two consecutive timesteps and ensures conservation by adding or removing water vapour as necessary from grid-cells. It does this in a way that is consistent with the uncertainty caused by using interpolation in the SISL scheme, using linear and higher order interpolation as bounds in which it can modify the water vapour in a grid-cell, while staying as close as possible to the higher order solution. With the OCF scheme in use, moisture conservation is guaranteed and once the model has reached equilibrium, precipitation balances evaporation as it should (see Figure \ref{fig:energy_fluxes}).
+The SISL advection scheme allows for a large timestep without becoming unstable. Such schemes are not conservative; there is no guarantee that there will be the same total quantity of a tracer from one timestep to the next. In preliminary tests, we found that this had a large impact on the total water content in the model. The non-conservation of moisture leads to precipitation rates being three times higher than what would be expected through comparison with evaporation rates. To ameliorate this, we used the Optimized Conservative Filter (OCF) moisture conservation scheme \parencite{zerroukat2015monotonic}, developed previously for this purpose. This scheme is similar to the Priestley scheme \parencite{priestley1993quasi}, in that it compares the total water content at two consecutive timesteps and ensures conservation by adding or removing water vapour as necessary from grid-cells. It does this in a way that is consistent with the uncertainty caused by using interpolation in the SISL scheme, using linear and higher order interpolation as bounds in which it can modify the water vapour in a grid-cell, while staying as close as possible to the higher order solution. With the OCF scheme in use, moisture conservation is guaranteed and once the model has reached equilibrium, precipitation is close to balancing evaporation as it should (see Figure \ref{fig:energy_fluxes}). When averaged over the final \SI{20}{days} of the experiment, the difference between the two is around 0.5\%. For S0, precipitation = \SI{151.0}{W.m^{-2}}, latent heat flux = \SI{150.4}{W.m^{-2}} when precipitation is expressed as its heating rate through latent heat release. This implies that the model must be losing moisture at this time (not tested).
 
-In a similar manner to moisture, the SISL scheme can also lead to a non-conservation of energy. No suitable scheme for energy conservation is available in the UM, and so the effects of this energy non-conservation must be characterized and taken into account. This manifests itself as an imbalance between the prescribed cooling energy loss, and the energy input into the model through the surface latent and sensible heat fluxes. Essentially, energy is being supplied by the dynamics of the model, which means that the surface fluxes are less than what would be expected to balance the prescribed cooling by around \SI{30}{W.m^{-2}} for S0 to \SI{75}{W.m^{-2}} for S4 (See Figure \ref{fig:energy_fluxes}). \todo{Get these numbers direct from the data}, \todo{do calc again using data from model about how much the expected heat flux should be, at around \SI{200}{W.m^{-2}}}.
-For the purposes of this study, in which we wish to study the dynamical interactions between clouds, this is not an issue. This is supported by the fact that the imbalance mainly affects the stratosphere, i.e. it is far from the area of interest in this study. However, if a detailed energy budget were the focus of the investigation, this would become of prime importance and it would be necessary to either account for the imbalance rigorously, or to apply a similar scheme as the OCF scheme described above for energy conservation. 
+In a similar manner to moisture, the SISL scheme can also lead to a non-conservation of energy. No suitable scheme for energy conservation is available in the UM, and so the effects of this energy non-conservation must be characterized and taken into account. This manifests itself as an imbalance between the prescribed cooling energy loss, and the energy input into the model through the surface latent and sensible heat fluxes. Essentially, energy is being supplied by the dynamics of the model, which means that the surface fluxes are less than what would be expected to balance the prescribed cooling by around \SI{37.3}{W.m^{-2}} for S0 to \SI{86.4}{W.m^{-2}} for S4 (See Figure \ref{fig:energy_fluxes}). These numbers are based on a calculation of the energy loss from the prescribed cooling, where the loss is calculated by integrating the cooling over the pressure levels over which it is applied. This yields an energy loss rate of \SI{204.8}{W.m^{-2}} for S0, and \SI{206.1}{W.m^{-2}} for S4, with the difference being mainly due to a difference in the surface pressure.
+
+For the purposes of this study, in which we wish to study the dynamical interactions between clouds, the energy imbalance is not an issue. This is supported by the fact that the imbalance mainly affects the stratosphere, i.e. it is far from the area of interest in this study (not shown). However, if a detailed energy budget were the focus of the investigation, this would become of prime importance and it would be necessary to either account for the imbalance rigorously, or to apply a similar scheme as the OCF scheme described above for energy conservation. 
 
 \begin{figure}[h]
     \centering
@@ -184,6 +190,7 @@ We require a diagnosis of where the clouds are in 3D space. Choices for how to d
 %    \item The momentum flux, can be calculated using $\rho \mean{u' v'} = \rho \frac{u_{inc}}{\Delta t} \Delta z$.
 %\end{itemize}
 
+\newpage
 \section{Results}
 
 %\begin{itemize}
@@ -206,7 +213,7 @@ We require a diagnosis of where the clouds are in 3D space. Choices for how to d
 %    \item spatial distribution of clouds (there are areas of S4 with no clouds in them)
 %\end{itemize}
 %
-In Figure \ref{fig:S0_S4_snapshot}, rainfall from two \SI{15}{minute} periods in the final day for the S0 and S4 experiments are shown. The difference in spatial organization between them is clear: S0 displays what looks to be random or `popcorn' spatial distribution, whereas S4 is organized into a linear feature, perpendicular to the applied shear. We identify this linear feature as being a squall line. The squall line is propagating westward, with a speed of \todo{what speed}. From the shear profile for S4, this implies that it is being controlled by a steering level of \todo{what level?}. Also notable is the size, strength and number of the convective cells in each experiment: the cells in S4 are larger, have higher maximum rainfall rates, and there are fewer of them. 
+In Figure \ref{fig:S0_S4_snapshot}, rainfall from two \SI{15}{minute} periods in the final day for the S0 and S4 experiments are shown. The difference in spatial organization between them is clear: S0 displays what looks to be random or `popcorn' spatial distribution, whereas S4 is organized into a linear feature, perpendicular to the applied shear. We identify this linear feature as being a squall line. The squall line is propagating westward, with a speed of \SI{11.4}{m.s^{-1}}, or very close to the maximum wind speed. From the shear profile for S4, this implies that it is being controlled by a steering level of \SI{1}{km}. Also notable is the size and number of the convective cells in each experiment: the cells in S4 are larger, and there are fewer of them. The maximum value of rainfall is larger for S0 at this timestep, however there is more variation in the maximum value of rainfall for S4. For example, over the final day, S0 has maximum and minimum values of rainfall of \SI{217}{}-\SI{107}{mm.hr^{-1}}, whereas S4 has \SI{309}{}-\SI{0}{mm.hr^{-1}}.
 
 Through examination of animations of the rainfall fields, we observe that in S4 the individual convective cells are longer lived than their S0 counterparts. The lifetime of a cell in S0 is limited by the typical convective cell lifecycle, where the convective downdraught caused by the evaporation of precipitation and precipitation drag act to destroy conditions favourable for convection. However in the S4 experiment, there is a separation of updraughts and downdraughts, visible when looking at 2D vertical cross sections through a convective cell (not shown). We speculate that this separation increases the lifetime of the convective cells in the S4 experiment.
 %However, in S4, the lifetime of a cell is in general shorter than lifetime of the squall line of which it is a part.
@@ -216,7 +223,7 @@ The spatial distribution also suggests another difference between the two experi
 \begin{figure}[h]
     \centering
     \includegraphics[width=400px]{figs/{atmos.precip_plot.time_index3822_cropped}.png}
-    \caption{\todo{need to get max rainfall for each expt.}}
+    \caption{Max rainfall: S0, \SI{163}{mm.hr^{-1}}; S4, \SI{109}{mm.hr^{-1}}}
     \label{fig:S0_S4_snapshot}
 \end{figure}
 
@@ -401,8 +408,8 @@ We also want to know the variance of the different experiments at different spat
 
 In the lower figure in Figure \ref{fig:mf_spatial_hists}, we compare the total convective mass flux across the whole domain for our different experiments. Note that the solid blue line is the same in both upper and lower figures. As the shear is increased, the total mass flux in the domain decreases, with the organized experiments all showing similar distributions. The width of the distributions across all the experiments is broadly the same. \todo{Don't fully understand this, can we discuss? Thought the variance increase would be bigger.} %This coupled with the fact that there are far fewer clouds in the high shear experiments, means that the relative variance \todo{not sure how to phrase this} is actually lower.
 
+\newpage
 \section{Discussion and conclusions}
-
 
 % Discussion
 % How results might lead to the modification of a stoch. p13n:
