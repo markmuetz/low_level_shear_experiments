@@ -177,7 +177,7 @@ The SISL advection scheme allows for a large timestep without becoming unstable.
 \begin{figure}[H]
     \centering
     \includegraphics[width=400px]{figs/{atmos.surf_flux_plot.energy_fluxes}.png}
-    \caption{Latent heat flux (solid), sensible heat flux (dash-dot) and heating due to precipitation (dashed) over the run length of the model for experiments S0 and S4. Other experiments lie between these two.. There is a large initial transient during the model spin-up. Results and statistics are only gathered after day 20 (vertical black dashed line), when the model is judged to have reached a statistical equilibrium. }
+    \caption{Latent heat flux (solid), sensible heat flux (dash-dot) and heating due to precipitation (dashed) over the run length of the model for experiments S0 and S4. Other experiments lie between these two. Precipitation data are smoothed using a one day averaging window. There is a large initial transient during the model spin-up. Results and statistics are only gathered after day 20 (vertical black dashed line), when the model is judged to have reached a statistical equilibrium. }
     \label{fig:energy_fluxes}
 \end{figure}
 
@@ -445,15 +445,25 @@ Second, we considered only deep shear profiles, we did not look at low level she
 
 Third, stochastic convection parametrization schemes such as \cite{PC2008} also require an estimate of the lifetime of the convective cells. From our results, there are reasons to believe that this increases as the shear increases. However, we have only noted this qualitatively, if we were to use a cloud tracking procedure we could be quantitative about this relationship. This would again lead to a possible modification to stochastic convection parametrization schemes.
 
+\todo{Could add a section on convective momentum transports here too.}
+
 % Conclusion
 \section{Conclusions}
-\begin{itemize}
-    \item We have demonstrated that shear can control the degree of organization in RCE cases.
-    \item That there is a qualitative difference that manifests itself across a wide range of metrics between organized and unorganized conv.
-    \item That this leads to clear differences between the size, strength and number of convective cells.
-    \item These differences can be characterized by e.g. $p(m)$, $p(M)$ .
-    \item It has hinted at differences in lifecyles between the organized and unorganized expts. This points to future studies of this..
-\end{itemize}
+%\begin{itemize}
+%    \item We have demonstrated that shear can control the degree of organization in RCE cases.
+%    \item That there is a qualitative difference that manifests itself across a wide range of metrics between organized and unorganized conv.
+%    \item That this leads to clear differences between the size, strength and number of convective cells.
+%    \item These differences can be characterized by e.g. $p(m)$, $p(M)$ .
+%    \item It has hinted at differences in lifecyles between the organized and unorganized expts.
+%\end{itemize}
+%
+In this study we have demonstrated that the degree of organization in an idealized atmospheric model can be controlled by applying linearly scaled deep shear profiles. When there is no shear, the convection is unorganized. As the shear is increased, the degree of organization increases. The spatial scale of the organization was calculated. We found that the organized experiments exhibit preferential organization on scales up to \SI{50}{km}, and inhibition of convection beyond this length scale.
+
+Increasing shear has also been seen to increase the mass flux per cloud, and decrease the number of clouds in the domain. There is evidence that the lifetime of the convective cells increases with increasing shear as well.
+
+The organized and unorganized experiments show qualitatively different behaviour for several metrics. The organized experiments show less variation of cloud number with height, the mass flux per cloud increases with height and there is a maximum in the total convective mass flux at higher levels. The distribution of number of clouds with mass flux also shows that there are far fewer clouds with lower mass flux in the organized experiments, and the maximum mass flux per cloud is around 2 times higher for the organized cases. The mass flux which contributes the most to the total convective mass flux is also higher for the organized experiments.
+
+The variance of mass flux with different spatial scales is seen to increase as the scale of analysis is decreased. The variance remains comparable when the same spatial scale is analysed for the different experiments though.
 
 %\newpage
 %\subsection*{Main papers (*:key papers)}
