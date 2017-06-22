@@ -154,12 +154,14 @@ Each simulation is started with an initial moisture and potential temperature pr
 
 A prescribed cooling rate of \SI{2}{K.day^{-1}} is applied from the surface to \SI{200}{hPa}, decreasing linearly with pressure to \SI{0}{K.day^{-1}} by \SI{100}{hPa} (see Figure \ref{fig:input_profiles}, middle). This cooling rate is comparable to typical radiative cooling rates over the tropics. Larger cooling rates representing large-scale convergence and forced ascent, ranging from \SI{4}{K.day^{-1}} to \SI{16}{K.day^{-1}}, were also tested. However, when the model was forced with these rates, it developed a large-scale, domain wide oscillation, thought to be a convectively coupled gravity wave with period equal to the largest scale available to the disturbance - the length of the domain. These oscillations are a form of organization, and so affect the fluctuations that we are trying to measure. They are also an artefact of the modelling process due to the bi-periodic nature of the boundary conditions, and so are little more than a curiosity and an annoyance. We therefore decided to run with smaller cooling rates that did not stimulate this mode of organization.
 
+\todo{Paragraph on stratospheric GW damping and theta relaxation.}
+
 \subsection{Shear profiles and experiments}
 
 The shear profile that we choose to impose was originally derived from the Marshall Islands experiment \parencite{yanai1973determination}. It has subsequently been used to stimulate mesoscale organization in the form of linear features resembling tropical squall lines, in both 2D \parencite{tompkins2000impact} and 3D \parencite{grabowski1996long, CC2006II} experiments. It is applied by relaxing back to a mean wind across the domain, by applying a single increment to all grid-cells at a given height level in the domain. In the east-west direction, the increment at each height are given by: $u_{inc} = \frac{U_{ref} - \langle u \rangle}{\tau} \Delta t$, where $U_{ref}$ is our reference profile, $\langle u \rangle$ is the domain mean $u$ wind. The relaxation time, $\tau = $ \SI{21600}{s}, and the model timestep, $\Delta t = $ \SI{30}{s}. 
 
 %\todo{S0-S4 - linear scalings of the basic profile.}
-The way that we vary the shear profile is to take linear scalings of the original profile. We do this as a pragmatic means for altering the degree of organization in the experiments. The scalaings are labelled according to the strength of their shear profile - in S0 the relaxation is back to 0 mean wind across the domain, in S4 the relaxation is back to the the same profile as was used in \cite{CC2006II, tompkins2000impact}. This allows us to begin to sample the parameter space of shear profiles, in a way that includes both unorganized (S0), and organized (S4) behaviour, with the degree of organization in the other experiments still to be determined.
+The way that we vary the shear profile is to take linear scalings of the original profile. We do this as a pragmatic means for altering the degree of organization in the experiments. The scalings are labelled according to the strength of their shear profile - in S0 the relaxation is back to 0 mean wind across the domain, in S4 the relaxation is back to the the same profile as was used in \cite{CC2006II, tompkins2000impact}. This allows us to begin to sample the parameter space of shear profiles, in a way that includes both unorganized (S0), and organized (S4) behaviour, with the degree of organization in the other experiments still to be determined.
 
 The reference profiles, along with the mean wind from the model over the final day of the simulation for each of the experiments, are shown in Figure \ref{fig:input_profiles}.
 
@@ -421,7 +423,6 @@ We also want to know the variance of the different experiments at different spat
     \label{fig:mf_spatial_hists}
 \end{figure}
 
-
 In the lower figure in Figure \ref{fig:mf_spatial_hists}, we compare the total convective mass flux across the whole domain for our different experiments. Note that the solid blue line is the same in both upper and lower figures. As the shear is increased, the total mass flux in the domain decreases, with the organized experiments all showing similar distributions. The width of the distributions across all the experiments is broadly the same. \todo{Don't fully understand this, can we discuss? Thought the variance increase would be bigger.} %This coupled with the fact that there are far fewer clouds in the high shear experiments, means that the relative variance \todo{not sure how to phrase this} is actually lower.
 
 \newpage
@@ -437,15 +438,25 @@ In the lower figure in Figure \ref{fig:mf_spatial_hists}, we compare the total c
 %    \item More speculatively, could also link cloud lifetimes to stochastic parametrization.
 %\end{itemize}
 
+\todo{Paragraph on the nature of the org. seen here. Links back to Lit - what Lit? Perhaps grabowski/tompkins/CC2006II?}
+
+\todo{(sep from prev.?) Paragraph on spatial scale of org.}
+
+\todo{Paragraph on specific results - mass flux per cloud increases with org., number of clouds with low mf/cld decreases with org., number of clouds almost const with height for org'd conv.}
+
+\todo{Paragraph on variance of $p(M)$ - what goes here?}
+
+% How results can be used.
 These results represent a first step towards trying to include some of the effects of spatial organization into a stochastic convection parametrization scheme. We have shown that there is a clear dependence of the distribution of mass flux per cloud on the degree of organization, and so this provides a route into modifying an existing stochastic parametrization scheme by changing the formulation of this PDF. Likewise, the distribution of total convective mass flux over a given spatial scale shows a clear relationship with the degree of organization. This again leads to a natural means for modifying a stochastic parametrization scheme. With reference to the outline of how a stochastic parametrization scheme works, modifying these PDFs would amount to changing the behaviour of the parametrization scheme in steps 2 and 3.
 
-However, the work here is limited in three \todo{only three?!} key ways. First, although it has potential for modifying a convection parametrization scheme, it only provides part of the answer as to how this might be done. This study looks at how key PDFs change with shear, and thus organization, in simulations, it provides no way of characterizing the shear profile in a way that could be used in a parametrization scheme. In this study we control the shear profile; however, when running as part of a parametrization scheme, the shear profile will be determined by the dynamics of the model, and will not in general match one of the shear profiles studied here. It will therefore be necessary to have a way of characterizing shear profiles generated by the model dynamics, and matching these to changes in the PDFs of mass flux. One possible way of characterizing the shear profiles would be through a bulk Richardson number, which provides a measure of the likelihood of turbulence by dividing the static stability by the shear over a given layer.
+% Limitations.
+However, the work here is limited in three key ways. First, although it has potential for modifying a convection parametrization scheme, it only provides part of the answer as to how this might be done. This study looks at how key PDFs change with shear, and thus organization, in simulations, it provides no way of characterizing the shear profile in a way that could be used in a parametrization scheme. In this study we control the shear profile; however, when running as part of a parametrization scheme, the shear profile will be determined by the dynamics of the model, and will not in general match one of the shear profiles studied here. It will therefore be necessary to have a way of characterizing shear profiles generated by the model dynamics, and matching these to changes in the PDFs of mass flux. One possible way of characterizing the shear profiles would be through a bulk Richardson number, which provides a measure of the likelihood of turbulence by dividing the static stability by the shear over a given layer.
 
 Second, we considered only deep shear profiles, we did not look at low level shear only experiments, where the shear is primarily in the boundary layer. Low level shear has been hypothesized to be fundamental in the role of squall line formation, due to the interaction of the convective cold pool with the environmental air with an opposite vorticity \parencite{RKW1988}. CRM studies have looked at this phenomenon in detail \parencite{RE2001, another}, although they haven't focused on the statistics of the mass flux variability. We have performed experiments similar to those in \cite{RE2001}, however we did not see similar qualitative results, in the form of shear parallel squall lines. One possible reason for this is that the resolution that we are running with is too coarse for the UM to resolve the dynamical processes that are responsible for this type of behaviour, although we are using the same resolution as in \cite{RE2001}. Stimulating squall lines with this type of profile would be desirable, as it provides a simpler profile, controlled by fewer parameters, and therefore makes experiments that search over the parameter space easier to design.
 
 Third, stochastic convection parametrization schemes such as \cite{PC2008} also require an estimate of the lifetime of the convective cells. From our results, there are reasons to believe that this increases as the shear increases. However, we have only noted this qualitatively, if we were to use a cloud tracking procedure we could be quantitative about this relationship. This would again lead to a possible modification to stochastic convection parametrization schemes.
 
-\todo{Could add a section on convective momentum transports here too.}
+%\todo{Could add a section on convective momentum transports here too.}
 
 % Conclusion
 \section{Conclusions}
@@ -457,12 +468,17 @@ Third, stochastic convection parametrization schemes such as \cite{PC2008} also 
 %    \item It has hinted at differences in lifecyles between the organized and unorganized expts.
 %\end{itemize}
 %
+
+% degree of org., spatial scale of org.
 In this study we have demonstrated that the degree of organization in an idealized atmospheric model can be controlled by applying linearly scaled deep shear profiles. When there is no shear, the convection is unorganized. As the shear is increased, the degree of organization increases. The spatial scale of the organization was calculated. We found that the organized experiments exhibit preferential organization on scales up to \SI{50}{km}, and inhibition of convection beyond this length scale.
 
+% shear up -> mf/cld up, #clds down. spec. cloud lifetime up with shear up.
 Increasing shear has also been seen to increase the mass flux per cloud, and decrease the number of clouds in the domain. There is evidence that the lifetime of the convective cells increases with increasing shear as well.
 
+% Qual diff between org'd/unorg'd expts.
 The organized and unorganized experiments show qualitatively different behaviour for several metrics. The organized experiments show less variation of cloud number with height, the mass flux per cloud increases with height and there is a maximum in the total convective mass flux at higher levels. The distribution of number of clouds with mass flux also shows that there are far fewer clouds with lower mass flux in the organized experiments, and the maximum mass flux per cloud is around 2 times higher for the organized cases. The mass flux which contributes the most to the total convective mass flux is also higher for the organized experiments.
 
+% Variance of mf with spat scales.
 The variance of mass flux with different spatial scales is seen to increase as the scale of analysis is decreased. The variance remains comparable when the same spatial scale is analysed for the different experiments though.
 
 %\newpage
@@ -487,6 +503,5 @@ The variance of mass flux with different spatial scales is seen to increase as t
 %
 %
 \printbibliography[title={References}]
-
 
 \end{document}
